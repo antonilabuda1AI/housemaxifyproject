@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="House Maxify">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#135ef2"/>
+      <stop offset="100%" stop-color="#00b894"/>
+    </linearGradient>
+  </defs>
+  <rect rx="28" ry="28" x="8" y="8" width="184" height="184" fill="#0f1a2e" stroke="#203054"/>
+  <g transform="translate(30,40)">
+    <polygon points="70,0 140,60 140,120 0,120 0,60" fill="url(#g)" opacity="0.2"/>
+    <polygon points="70,8 130,56 130,110 10,110 10,56" fill="url(#g)" opacity="0.85"/>
+    <rect x="28" y="70" width="30" height="40" fill="#0f1a2e" stroke="#203054"/>
+    <rect x="78" y="70" width="30" height="28" fill="#0f1a2e" stroke="#203054"/>
+  </g>
+  <text x="100" y="190" text-anchor="middle" font-family="Segoe UI, Roboto, Arial" font-weight="700" font-size="18" fill="#e8eefc">House Maxify</text>
+</svg>
+

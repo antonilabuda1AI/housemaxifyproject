@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Maxify — Get Estimate</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">
+        <a href="/" class="brand__link">
+          <img src="/assets/logo.svg" alt="House Maxify" class="brand__logo" />
+          <span class="brand__name">House Maxify</span>
+        </a>
+      </div>
+      <nav class="nav__links">
+        <a href="/">Home</a>
+        <a href="/form" class="active">Get Estimate</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Property Estimate</h1>
+      <p>Tell us about your property and your plans. We’ll estimate a price range using our model.</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash">
+          {% for category, message in messages %}
+            <div class="flash__item {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% endwith %}
+
+      <form method="post" class="form-grid">
+        <div class="fieldset">
+          <h3>Your Information</h3>
+          <div class="grid">
+            <label>
+              <span>Name*</span>
+              <input type="text" name="name" value="{{ preserved.name if preserved else '' }}" required>
+            </label>
+            <label>
+              <span>Email*</span>
+              <input type="email" name="email" value="{{ preserved.email if preserved else '' }}" required>
+            </label>
+            <label>
+              <span>Phone*</span>
+              <input type="tel" name="phone" value="{{ preserved.phone if preserved else '' }}" required pattern="^[0-9()+\-\s]{7,}$" placeholder="(555) 555-1234">
+            </label>
+            <label>
+              <span>Looking to</span>
+              <select name="intent">
+                <option value="buy" {% if preserved and preserved.intent == 'buy' %}selected{% endif %}>Buy</option>
+                <option value="sell" {% if preserved and preserved.intent == 'sell' %}selected{% endif %}>Sell</option>
+              </select>
+            </label>
+            <label>
+              <span>Timeline</span>
+              <select name="timeline">
+                <option value="3" {% if preserved and preserved.timeline == '3' %}selected{% endif %}>3 months</option>
+                <option value="6" {% if preserved and preserved.timeline == '6' %}selected{% endif %}>6 months</option>
+                <option value="12" {% if preserved and preserved.timeline == '12' %}selected{% endif %}>12 months</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="fieldset">
+          <h3>Property Details</h3>
+          <div class="grid">
+            {% set fs = feature_set or set() %}
+            {% if not fs or 'bedrooms' in fs %}
+            <label><span>Bedrooms*</span><input required type="number" step="1" min="0" name="bedrooms" placeholder="3"></label>
+            {% endif %}
+            {% if not fs or 'bathrooms' in fs %}
+            <label><span>Bathrooms*</span><input required type="number" step="0.25" min="0" name="bathrooms" placeholder="2"></label>
+            {% endif %}
+            {% if not fs or 'sqft_living' in fs %}
+            <label><span>Sqft Living*</span><input required type="number" step="1" min="0" name="sqft_living" placeholder="1800"></label>
+            {% endif %}
+            {% if not fs or 'sqft_lot' in fs %}
+            <label><span>Sqft Lot</span><input type="number" step="1" min="0" name="sqft_lot" placeholder="5000"></label>
+            {% endif %}
+            {% if not fs or 'floors' in fs %}
+            <label><span>Floors</span><input type="number" step="0.5" min="0" name="floors" placeholder="1"></label>
+            {% endif %}
+            {% if not fs or 'waterfront' in fs %}
+            <label><span>Waterfront (0/1)</span><input type="number" step="1" min="0" max="1" name="waterfront" placeholder="0"></label>
+            {% endif %}
+            {% if not fs or 'view' in fs %}
+            <label><span>View (0-4)</span><input type="number" step="1" min="0" max="4" name="view" placeholder="0"></label>
+            {% endif %}
+            {% if not fs or 'condition' in fs %}
+            <label><span>Condition (1-5)</span><input type="number" step="1" min="1" max="5" name="condition" placeholder="3"></label>
+            {% endif %}
+            {% if not fs or 'grade' in fs %}
+            <label><span>Grade (1-13)</span><input type="number" step="1" min="1" max="13" name="grade" placeholder="7"></label>
+            {% endif %}
+            {% if not fs or 'sqft_above' in fs %}
+            <label><span>Sqft Above</span><input type="number" step="1" min="0" name="sqft_above" placeholder="1800"></label>
+            {% endif %}
+            {% if not fs or 'sqft_basement' in fs %}
+            <label><span>Sqft Basement</span><input type="number" step="1" min="0" name="sqft_basement" placeholder="0"></label>
+            {% endif %}
+            {% if not fs or 'yr_built' in fs %}
+            <label><span>Year Built</span><input type="number" step="1" min="1800" max="2100" name="yr_built" placeholder="1990"></label>
+            {% endif %}
+            {% if not fs or 'yr_renovated' in fs %}
+            <label><span>Year Renovated</span><input type="number" step="1" min="0" max="2100" name="yr_renovated" placeholder="0"></label>
+            {% endif %}
+            {% if not fs or 'zipcode' in fs %}
+            <label><span>Zipcode*</span><input required type="number" step="1" min="0" name="zipcode" placeholder="98103"></label>
+            {% endif %}
+            {% if not fs or 'lat' in fs %}
+            <label><span>Latitude</span><input type="number" step="0.000001" name="lat" placeholder="47.6"></label>
+            {% endif %}
+            {% if not fs or 'long' in fs %}
+            <label><span>Longitude</span><input type="number" step="0.000001" name="long" placeholder="-122.3"></label>
+            {% endif %}
+            {% if not fs or 'sqft_living15' in fs %}
+            <label><span>Sqft Living 15</span><input type="number" step="1" min="0" name="sqft_living15" placeholder="1800"></label>
+            {% endif %}
+            {% if not fs or 'sqft_lot15' in fs %}
+            <label><span>Sqft Lot 15</span><input type="number" step="1" min="0" name="sqft_lot15" placeholder="5000"></label>
+            {% endif %}
+          </div>
+          {% if fs and fs|length > 0 %}
+          <p class="muted" style="margin-top:8px">This form is tailored to your model’s feature list. Fields not used by the model are hidden.</p>
+          {% endif %}
+        </div>
+
+        <div class="actions">
+          <button class="button button--primary" type="submit">Estimate Price</button>
+          <a class="button" href="/">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <script>document.write(new Date().getFullYear())</script> House Maxify</span>
+      <span>Prototype for demonstration purposes.</span>
+    </div>
+  </footer>
+
+  <script src="/js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Maxify — Smarter Property Estimates</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">
+        <img src="/assets/logo.svg" alt="House Maxify" class="brand__logo" />
+        <span class="brand__name">House Maxify</span>
+      </div>
+      <nav class="nav__links">
+        <a href="/">Home</a>
+        <a href="/form">Get Estimate</a>
+        <a href="/about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__content">
+        <h1>Make your best move with House Maxify</h1>
+        <p class="subtitle">A modern, data-driven way to price your next home — whether you're buying or selling.</p>
+        <div class="cta">
+          <a class="button button--primary" href="/form">Get Your Property Estimate</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features container">
+      <div class="feature">
+        <h3>Accurate</h3>
+        <p>Powered by an advanced XGBoost model trained on real market data.</p>
+      </div>
+      <div class="feature">
+        <h3>Fast</h3>
+        <p>Enter your details and receive an estimated price range in seconds.</p>
+      </div>
+      <div class="feature">
+        <h3>Actionable</h3>
+        <p>See similar properties and plan your next steps with confidence.</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="container about">
+    <div class="card">
+      <h2>Why House Maxify?</h2>
+      <div class="grid-2">
+        <div>
+          <p>We blend modern design with proven machine learning to give buyers and sellers a fast, reliable price signal and the context to act on it.</p>
+          <ul class="bullets">
+            <li>Data-driven estimates with clear ranges</li>
+            <li>Inputs you understand — beds, baths, sqft, condition</li>
+            <li>Comparable homes selected for true similarity</li>
+            <li>Simple lead capture so you can follow up later</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Technology</h3>
+          <div class="badges">
+            <span class="badge">Flask</span>
+            <span class="badge">XGBoost</span>
+            <span class="badge">pandas</span>
+            <span class="badge">scikit-learn</span>
+            <span class="badge">joblib</span>
+            <span class="badge">Docker (optional)</span>
+          </div>
+          <p class="muted small">Model: gradient-boosted trees trained on cleaned King County housing data with feature engineering and robust preprocessing.</p>
+        </div>
+      </div>
+      <div class="how">
+        <h3>How It Works</h3>
+        <ol>
+          <li>Share property details and your timeline.</li>
+          <li>We run your info through our trained model.</li>
+          <li>We show a price range and close comps you can trust.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <script>document.write(new Date().getFullYear())</script> House Maxify. All rights reserved.</span>
+      <span>Prototype for demonstration purposes.</span>
+    </div>
+  </footer>
+
+  <script src="/js/app.js" defer></script>
+</body>
+<!-- Start the server locally: `python app.py`, then visit http://localhost:5000 -->
+</html>

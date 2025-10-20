@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Maxify — Your Estimate</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">
+        <a href="/" class="brand__link">
+          <img src="/assets/logo.svg" alt="House Maxify" class="brand__logo" />
+          <span class="brand__name">House Maxify</span>
+        </a>
+      </div>
+      <nav class="nav__links">
+        <a href="/">Home</a>
+        <a href="/form">New Estimate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card result">
+      <h1>Your Estimated Price Range</h1>
+      <p class="muted">Thank you, {{ name }}{% if intent %} — looking to {{ intent }}{% endif %}{% if timeline %} in {{ timeline }} months{% endif %}.</p>
+
+      <div class="result__panel">
+        <div class="estimate">
+          <div class="estimate__range">
+            <div class="estimate__low">{{ fmt(y_low) }}</div>
+            <div class="estimate__mid">≈ {{ fmt(y_pred) }}</div>
+            <div class="estimate__high">{{ fmt(y_high) }}</div>
+          </div>
+          <div class="progress">
+            <div class="progress__bar" style="width: 50%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="similar">
+        <h3>Similar Properties</h3>
+        <div class="cards">
+          {% for s in similars %}
+          <div class="property-card">
+            <div class="property-card__body">
+              <div class="property-card__price">{{ fmt(s.price) }}</div>
+              <div class="property-card__meta">
+                <span>{{ s.bedrooms or '?' }} bd</span>
+                <span>{{ s.bathrooms or '?' }} ba</span>
+                <span>{{ s.sqft_living or '?' }} sqft</span>
+                <span>{{ s.zipcode or '—' }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="button" href="/form">Run Another Estimate</a>
+        <a class="button button--primary" href="/">Back to Home</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <script>document.write(new Date().getFullYear())</script> House Maxify</span>
+      <span>Prototype for demonstration purposes.</span>
+    </div>
+  </footer>
+
+  <script src="/js/app.js" defer></script>
+</body>
+</html>
+

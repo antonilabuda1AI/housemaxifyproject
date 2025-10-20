@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — House Maxify</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">
+        <a href="/" class="brand__link">
+          <img src="/assets/logo.svg" alt="House Maxify" class="brand__logo" />
+          <span class="brand__name">House Maxify</span>
+        </a>
+      </div>
+      <nav class="nav__links">
+        <a href="/">Home</a>
+        <a href="/form">Get Estimate</a>
+        <a href="/about" class="active">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>About House Maxify</h1>
+      <p>House Maxify is a modern, data-driven portal for people buying or selling homes. We combine an advanced machine learning model with a clean, approachable interface so anyone can get a quick, useful price signal — plus comparable homes that actually feel comparable.</p>
+    </section>
+
+    <section class="card">
+      <h3>Accuracy Snapshot</h3>
+      {% if metrics %}
+      <div class="grid-2">
+        <div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric__label">R²</div>
+              <div class="metric__value">{{ (metrics.r2 * 100) | round(1) }}%</div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">MAPE</div>
+              <div class="metric__value">{{ (metrics.mape * 100) | round(1) }}%</div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">MAE</div>
+              <div class="metric__value">{{ fmt(metrics.mae) }}</div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">RMSE</div>
+              <div class="metric__value">{{ fmt(metrics.rmse) }}</div>
+            </div>
+          </div>
+          <p class="muted small">Based on {{ metrics.n_samples }} recent rows from the dataset using the same model and preprocessing as this app. Metrics are for guidance only.</p>
+        </div>
+        <div>
+          <p>We report multiple metrics because “accuracy” means different things for pricing:</p>
+          <ul class="bullets">
+            <li><strong>R²</strong> shows how much of the price variance is explained.</li>
+            <li><strong>MAPE</strong> is an average % error — easy to interpret.</li>
+            <li><strong>MAE/RMSE</strong> show average error in dollars.</li>
+          </ul>
+        </div>
+      </div>
+      {% else %}
+      <p class="muted">Accuracy metrics will appear here once the dataset and model are available.</p>
+      {% endif %}
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h3>What Makes It Good</h3>
+        <ul class="bullets">
+          <li>Focused, honest estimates with a sensible range</li>
+          <li>Inputs in plain language, not data science jargon</li>
+          <li>Comps filtered by zipcode and key features</li>
+          <li>Fast prototype that’s easy to extend or deploy</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Technology</h3>
+        <div class="badges">
+          <span class="badge">Flask</span>
+          <span class="badge">XGBoost</span>
+          <span class="badge">pandas</span>
+          <span class="badge">scikit-learn</span>
+          <span class="badge">joblib</span>
+          <span class="badge">Docker (optional)</span>
+        </div>
+        <p class="muted">Trained on cleaned King County housing data; the app infers model features, handles medians for missing values, and stores leads for follow-up.</p>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="card">
+        <h3>How It Works</h3>
+        <ol>
+          <li>Submit property details (beds, baths, sqft, grade, zipcode, etc.).</li>
+          <li>The model predicts a price; we calibrate results to dollars.</li>
+          <li>We show a price range and 3 close comps in your area.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Roadmap</h3>
+        <ul class="bullets">
+          <li>Interactive maps and neighborhood overlays</li>
+          <li>Confidence intervals and model explanations</li>
+          <li>Saved searches and email summaries</li>
+          <li>Simple sharing and printable reports</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Privacy & Data</h3>
+      <p class="muted small">This is a prototype. Contact details you provide are stored locally in <code>data/leads.csv</code> for demonstration purposes only.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <script>document.write(new Date().getFullYear())</script> House Maxify</span>
+      <span>Prototype for demonstration purposes.</span>
+    </div>
+  </footer>
+
+  <script src="/js/app.js" defer></script>
+</body>
+</html>

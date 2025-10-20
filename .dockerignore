@@ -1,0 +1,19 @@
+__pycache__/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.tmp
+*.log
+node_modules/
+
+# Optional: exclude large local datasets from image; keep model and core data
+# data/
+# model/
+
+# But include these by default for the prototype
+

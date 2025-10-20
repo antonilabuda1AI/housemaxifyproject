@@ -1,0 +1,67 @@
+You are helping me build a machine learning–powered web application prototype.
+
+CONTEXT:
+- This folder contains a machine learning project.
+- The dataset is stored in: data/kc_house_data_clean.csv
+- The trained model is an XGBoost model saved as: house_price_xgb_advanced.joblib
+- The model predicts house prices.
+
+GOAL:
+Build a simple, attractive web application (prototype) using **Python** so users can interact with the model and get price predictions.
+
+APP DESCRIPTION:
+- The app should be for a fictional company called **“House Maxify”**.
+- Purpose: A web portal for users who want to **buy or sell houses**.
+- The design should look **modern and professional**, with consistent “House Maxify” branding.
+
+FEATURES REQUIRED:
+1. **Home Page**
+   - Create a visually appealing landing page with the company name “House Maxify”.
+   - Add a call-to-action button: **“Get Your Property Estimate”**.
+   - Clicking the button should open a property input form.
+
+2. **Property Form Page**
+   - The form should be **user-friendly** and designed for non-technical users.
+   - Inputs should include:
+     - User’s **name**, **email**, and **phone number** (required).
+     - Whether the user wants to **buy** or **sell**.
+     - All necessary property details required by the XGBoost model (e.g., bedrooms, bathrooms, sqft_living, condition, grade, zipcode, etc.).
+     - User’s timeline: “Looking to buy/sell in 3, 6, or 12 months”.
+   - On submission:
+     - Use the loaded model (`house_price_xgb_advanced.joblib`) to predict a **price range** for the property.
+     - Show the result on the page in a clear, visual way.
+     - Display 3 example “similar properties” (you can simulate them based on similar price, location, or features).
+
+3. **Storage**
+   - Save submitted user information (name, email, phone, buy/sell intent, prediction result) into a CSV file for later reference.
+
+4. **App Structure**
+   - Organize files into clear folders:
+     - `/html` → HTML files
+     - `/css` → CSS stylesheets
+     - `/js` → JavaScript if needed
+     - `/static` or `/assets` → images/logos if any
+     - `/model` → model and preprocessing assets
+     - `/data` → datasets
+   - Include a script `app.py` to launch the server.
+
+5. **Technical Requirements**
+   - Use **Flask** for the backend (simple and lightweight).
+   - Use **joblib** to load the model.
+   - Keep dependencies minimal and standard (Flask, pandas, xgboost, joblib).
+   - Include instructions or code comments showing how to:
+     - Start the Flask app locally (e.g., `python app.py`)
+     - Access it via browser at `http://localhost:5000`
+
+6. **Design Guidelines**
+   - Use simple, clean CSS (no heavy frameworks).
+   - Make sure the form and output look visually appealing and easy to read.
+   - Include basic branding (logo placeholder, color scheme, etc.) for “House Maxify”.
+
+OUTPUT EXPECTED:
+- The complete folder structure and main code files (`app.py`, HTML/CSS, etc.).
+- Example code for handling form input, running prediction, saving to CSV, and displaying the result.
+
+This is a prototype, not production-ready code. Prioritize readability, simplicity, and working functionality.
+
+begin coding now
